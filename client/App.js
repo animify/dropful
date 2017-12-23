@@ -1,11 +1,8 @@
 import React from 'react';
-import Layout from './Layout';
-import Router from './routes/Router';
+import Routes from './Routes';
 
 const App = () => (
-    <Layout>
-        <Router />
-    </Layout>
+    <Routes />
 );
 
 export default App;
