@@ -1,6 +1,7 @@
 import React from 'react';
 import RandomImage from './../../components/RandomImage';
 import DropForm from './../../containers/DropForm';
+import Footer from './../../components/Footer';
 
 class Home extends React.Component {
     constructor(props) {
@@ -19,6 +20,7 @@ class Home extends React.Component {
                 </div>
                 <div className="dropzone">
                     <DropForm />
+                    <Footer />
                 </div>
             </div>
         );

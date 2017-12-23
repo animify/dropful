@@ -1,12 +1,39 @@
-.sharetype
-    border 2px solid primary-color
-    padding 1rem
+#dropform
+    padding 0 3rem
+    display flex
+    flex-grow 1
+    flex-direction column
+    justify-content space-between
+    .action-section
+        width 100%
+        &.droparea, &.sharetype
+            border 2px solid primary-color
+            border-radius border-radius-normal
+            padding .9rem 1.4rem
+        &.droparea
+            text-align center
+            flex-grow 1
+            display flex
+            justify-content center
+            .droparea-body
+                align-self center
+        h6
+            color primary-color
+            font-weight 500
+        p
+            color secondary-color
+        small
+            color lighten(secondary-color, 30%)
+        h6, p, small
+            line-height 1.4em
+        & + .action-section
+            margin-top 1rem
+
+footer
+    padding 1.4rem 3rem 1.6rem
     width 100%
-    border-radius border-radius-normal
-    h6
-        color primary-color
-        font-weight 500
-    p
-        color secondary-color
-    h6, p
+    text-align center
+    small
+        margin-top .3rem
+        display block
         line-height 1.4em
