@@ -4,8 +4,8 @@
   cf()
 
 .bind
-  height 100%
-  width 100%
+    height 100%
+    width 100%
 
 .group
   .button
@@ -18,3 +18,35 @@
       border-radius border-radius-normal 0 0 border-radius-normal
     &:last-of-type
       border-radius 0 border-radius-normal border-radius-normal 0
+
+.zones
+    fixed top left
+    height 100%
+    width 100%
+    font-size 0
+    display flex
+    flex-direction row
+    justify-content space-between
+    .imagezone
+        font-size font-size-small
+        width 80%
+        height 100%
+        & > .unsplash
+            height 100%
+            width 100%
+            position relative
+            background-size cover
+            background-position center center
+            .unsplash-credits
+                absolute bottom 1.5rem left 1.5rem
+                color #fff
+                background-color rgba(0,0,0,.3)
+                padding .4rem .9rem
+                border-radius 20px
+    .dropzone
+        font-size font-size-standard
+        width 20%
+        height 100%
+        background-color #fff
+        overflow-x hidden
+        overflow-y auto

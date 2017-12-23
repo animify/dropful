@@ -2,12 +2,12 @@ import React from 'react';
 import { Router, Route } from 'react-router-dom';
 
 import history from './modules/History';
-import RootPage from './pages/root/RootPage';
+import Home from './pages/home/Home';
 import tracker from './modules/tracker';
 
 const Routes = () => (
     <Router history={history}>
-        <Route exact path="/" component={tracker(RootPage)} />
+        <Route exact path="/" component={tracker(Home)} />
     </Router>
 );
 
