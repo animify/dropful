@@ -1,6 +1,7 @@
 import React from 'react';
 import RandomImage from './../../components/RandomImage';
 import DropForm from './../../containers/DropForm';
+import Header from './../../components/Header';
 import Footer from './../../components/Footer';
 
 class Home extends React.Component {
@@ -19,6 +20,7 @@ class Home extends React.Component {
                     <RandomImage />
                 </div>
                 <div className="dropzone">
+                    <Header />
                     <DropForm />
                     <Footer />
                 </div>
