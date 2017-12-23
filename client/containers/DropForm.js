@@ -12,8 +12,11 @@ class DropForm extends React.Component {
     render() {
         return (
             <form>
-                <div>
-                    <label>Add files</label>
+                <div className="sharetype">
+                    <div className="sharetype-head">
+                        <h6>Email</h6>
+                        <p>Share via email</p>
+                    </div>
                 </div>
             </form>
         );

@@ -20,7 +20,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8dc9031cedce8b8dc19c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "beed54351376d2d4037c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -947,6 +947,9 @@ module.exports = {
             test: /\.jsx?$/,
             use: ['babel-loader'],
             exclude: /node_modules/
+        }, {
+            test: /\.(png|eot|svg|ttf|woff|woff2)$/,
+            loader: 'file-loader?name=[name].[ext]'
         }, {
             test: /\.styl$/,
             use: ['style-loader', 'css-loader', {

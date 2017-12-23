@@ -30,6 +30,10 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
+                test: /\.(png|eot|svg|ttf|woff|woff2)$/,
+                loader: 'file-loader?name=[name].[ext]'
+            },
+            {
                 test: /\.styl$/,
                 use: [
                     'style-loader',
