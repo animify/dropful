@@ -10,7 +10,7 @@ const Footer = () => (
                 <a>Help</a>
             </li>
             <li className="item">
-                <a>Open source</a>
+                <a>Github</a>
             </li>
         </ul>
         <small>Copyright Dropful 2017 &copy;</small>

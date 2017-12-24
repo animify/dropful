@@ -14,24 +14,11 @@ class DropForm extends React.Component {
             <form id="dropform">
                 <div className="action-section droparea">
                     <div className="droparea-body">
-                        <h6>Drop files</h6>
-                        <p>Drag & drop files here or click to browse</p>
-                        <small>(Up to 1GB)</small>
+                        <h2>Drop your files</h2>
+                        <p>Drag & drop your files here or click to browse. Up to 1GB.</p>
                     </div>
                 </div>
-                <div className="action-section sharetype">
-                    <div className="sharetype-head">
-                        <h6>Email</h6>
-                        <p>Share via email</p>
-                    </div>
-                </div>
-                <div className="action-section sharetype">
-                    <div className="sharetype-head">
-                        <h6>Link</h6>
-                        <p>Share with link</p>
-                    </div>
-                </div>
-                <button className="action-section button primary medium" type="submit">Transfer files</button>
+                <button className="action-section button primary medium" type="submit">Transfer & Share</button>
             </form>
         );
     }

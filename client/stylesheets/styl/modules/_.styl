@@ -1,5 +1,4 @@
 .header
-    text-align center
     padding 3rem 3rem 2rem
     img
         margin-bottom .5rem
@@ -12,25 +11,21 @@
     justify-content space-between
     .action-section
         width 100%
-        &.droparea, &.sharetype
-            border 2px solid primary-color
-            padding .9rem 1.4rem
         &.droparea
-            text-align center
             flex-grow 1
             display flex
-            justify-content center
             .droparea-body
                 align-self center
-        h6
+        h2
             color primary-color
             font-weight 500
         p
-            color secondary-color
+            color text-light
+            font-size 1.4em
         small
             color lighten(secondary-color, 30%)
         h6, p, small
-            line-height 1.4em
+            line-height 1.6em
         & + .action-section
             margin-top 1rem
 
@@ -38,7 +33,9 @@ footer
     padding 1.4rem 3rem 1.6rem
     width 100%
     text-align center
+
     small
         margin-top .3rem
         display block
+        color text-light
         line-height 1.4em
