@@ -4,7 +4,7 @@ const Footer = () => (
     <footer>
         <ul className="list horizontal">
             <li className="item">
-                <a>How it works</a>
+                <a>About</a>
             </li>
             <li className="item">
                 <a>Help</a>
