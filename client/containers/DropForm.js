@@ -19,16 +19,6 @@ class DropForm extends React.Component {
                 name: 'Dropful_v2.png',
                 size: '6.92 MB',
                 date: moment().format()
-            },
-            {
-                name: 'file.styl',
-                size: '4.12 KB',
-                date: moment().format()
-            },
-            {
-                name: 'Dropful_v2.png',
-                size: '6.92 MB',
-                date: moment().format()
             }]
         };
 
