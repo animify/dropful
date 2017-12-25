@@ -9,11 +9,13 @@ class Home extends React.Component {
         super(props);
 
         this.state = {
-            files: []
+            status: 'drop'
         };
     }
 
     render() {
+        const { status } = this.state;
+
         return (
             <div className="zones">
                 <div className="imagezone">
@@ -21,7 +23,7 @@ class Home extends React.Component {
                 </div>
                 <div className="dropzone">
                     <Header />
-                    <DropForm />
+                    <DropForm status={status} />
                     <Footer />
                 </div>
             </div>
