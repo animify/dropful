@@ -2,6 +2,15 @@
   position relative
   font-size 0
   font-style normal
+  label
+    font-size 10px
+    font-weight 500
+    text-transform uppercase
+    display block
+    color text-light
+    user-select none
+    &:focus-within
+      color color-primary
   input[type="text"], input[type="number"], textarea
     font-family font-family-standard
     font-size font-size-standard
@@ -10,12 +19,11 @@
     font-size font-size-standard
     max-width 100%
     line-height 1.125
-    padding 0.75rem 1rem
+    padding 0.75rem 0
     outline 0
-    border-radius border-radius-normal
     text-align left
     border 0
-    border 1px solid background-light-grey
+    border-bottom 2px solid background-light-grey
     transition border-color 0.14s ease
     min-width 220px
     background-color #fff
@@ -24,15 +32,18 @@
       color text-disabled
     &:focus
       border-color color-primary
+      color color-primary
+      & + label
+        color color-primary
   textarea
     &:not([rows])
-      min-height 8rem
+      min-height 5rem
       max-height 22rem
     line-height 1.2rem
     min-height 3rem
     min-width 23rem
     width 100%
-    resize vertical
+    resize none
     max-width 20rem
   .checkbox, .radio
     font-size font-size-standard
