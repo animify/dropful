@@ -9,7 +9,7 @@ class Home extends React.Component {
         super(props);
 
         this.state = {
-            status: 'drop'
+            status: 'loading'
         };
     }
 
