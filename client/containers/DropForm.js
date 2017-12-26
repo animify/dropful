@@ -9,6 +9,11 @@ class DropForm extends React.Component {
 
         this.state = {
             status: this.props.status,
+            fileForm: {
+                message: '',
+                emailTo: '',
+                emailFrom: ''
+            },
             shareType: 'email',
             files: [{
                 name: 'file.styl',
@@ -24,6 +29,7 @@ class DropForm extends React.Component {
 
         this.filesLoading = this.filesLoading.bind(this);
         this.setShareType = this.setShareType.bind(this);
+        this.isTyping = this.isTyping.bind(this);
     }
 
     componentDidMount() {
@@ -64,8 +70,20 @@ class DropForm extends React.Component {
         return fileView;
     }
 
+    isTyping(event) {
+        const field = event.target.name;
+        const fileForm = this.state.fileForm;
+        fileForm[field] = event.target.value;
+
+        this.setState({
+            fileForm,
+            errors: {}
+        });
+    }
+
     render() {
-        const { status, shareType } = this.state;
+        const shareLink = 'https://dropful.io/drop/ui2L2HJd';
+        const { status, shareType, fileForm } = this.state;
         const shareTypeEmail = (shareType === 'email');
 
         return (
@@ -102,15 +120,15 @@ class DropForm extends React.Component {
                                         (
                                             <div className="share-type">
                                                 <div className="input">
-                                                    <input name="to-email" spellCheck={false} required type="text" />
+                                                    <input name="emailTo" spellCheck={false} required onChange={this.isTyping} value={fileForm.emailTo} type="text" />
                                                     <span>Email to</span>
                                                 </div>
                                                 <div className="input">
-                                                    <input name="your-email" spellCheck={false} required type="text" />
+                                                    <input name="emailFrom" spellCheck={false} required onChange={this.isTyping} value={fileForm.emailFrom} type="text" />
                                                     <span>Your Email</span>
                                                 </div>
                                                 <div className="input">
-                                                    <textarea name="message" required spellCheck={false} />
+                                                    <textarea name="message" spellCheck={false} required onChange={this.isTyping} value={fileForm.message} />
                                                     <span>Message</span>
                                                 </div>
                                             </div>
@@ -118,7 +136,7 @@ class DropForm extends React.Component {
                                         (
                                             <div className="share-type">
                                                 <div className="input">
-                                                    <input name="link" spellCheck={false} required type="text" />
+                                                    <input name="link" spellCheck={false} required type="text" value={shareLink} />
                                                     <span>Your link</span>
                                                 </div>
                                             </div>
