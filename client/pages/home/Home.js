@@ -18,11 +18,20 @@ class Home extends React.Component {
             config: {
                 name: 'feedlist-icons',
                 props: {
-                    stroke: '#5E6578'
+                    stroke: '#5E6578',
+                    'stroke-width': 4
                 }
             }
         });
         minicons.swap();
+
+        this.discard = this.discard.bind(this);
+    }
+
+    discard() {
+        this.setState({
+            status: 'drop'
+        });
     }
 
     render() {
@@ -35,7 +44,7 @@ class Home extends React.Component {
                 </div>
                 <div className="dropzone">
                     <Header />
-                    <DropForm status={status} />
+                    <DropForm status={status} discard={this.discard} />
                     <Footer />
                 </div>
             </div>

@@ -7,7 +7,7 @@ class DropForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
+        this.defaultState = {
             status: this.props.status,
             fileForm: {
                 message: '',
@@ -27,24 +27,27 @@ class DropForm extends React.Component {
             }]
         };
 
+        this.state = { ...this.defaultState };
+
         this.filesLoading = this.filesLoading.bind(this);
         this.setShareType = this.setShareType.bind(this);
         this.isTyping = this.isTyping.bind(this);
+        this.discard = this.discard.bind(this);
     }
 
     componentDidMount() {
         minicons.swap();
     }
 
-    setShareType(type) {
+    componentWillReceiveProps(props) {
         this.setState({
-            shareType: type
+            status: props.status
         });
     }
 
-    componentWillReceieveProps(state, props) {
+    setShareType(type) {
         this.setState({
-            status: props.status
+            shareType: type
         });
     }
 
@@ -81,9 +84,14 @@ class DropForm extends React.Component {
         });
     }
 
+    discard() {
+        this.setState(this.defaultState);
+        this.props.discard();
+    }
+
     render() {
         const shareLink = 'https://dropful.io/drop/ui2L2HJd';
-        const { status, shareType, fileForm } = this.state;
+        const { status, shareType, fileForm, files } = this.state;
         const shareTypeEmail = (shareType === 'email');
 
         return (
@@ -144,7 +152,10 @@ class DropForm extends React.Component {
                                 }
                             </div>
                         </div>
-                        <button className="action-section button primary medium" type="submit">{shareTypeEmail ? 'Send Files' : 'Copy Share Link'}</button>
+                        <div className="button-group">
+                            <a onClick={this.discard} role="presentation" className="button medium discard"><i data-minicon="x" /></a>
+                            <button className="button primary medium submit" type="submit">{shareTypeEmail ? `Send File${files.length > 1 ? 's' : ''}` : 'Copy Share Link'}</button>
+                        </div>
                     </section>
                 ) : null}
 
@@ -154,7 +165,8 @@ class DropForm extends React.Component {
 }
 
 DropForm.propTypes = {
-    status: PropTypes.string.isRequired
+    status: PropTypes.string.isRequired,
+    discard: PropTypes.func.isRequired
 };
 
 export default DropForm;
