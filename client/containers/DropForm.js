@@ -23,10 +23,17 @@ class DropForm extends React.Component {
         };
 
         this.filesLoading = this.filesLoading.bind(this);
+        this.setShareType = this.setShareType.bind(this);
     }
 
     componentDidMount() {
         minicons.swap();
+    }
+
+    setShareType(type) {
+        this.setState({
+            shareType: type
+        });
     }
 
     componentWillReceieveProps(state, props) {
@@ -59,6 +66,7 @@ class DropForm extends React.Component {
 
     render() {
         const { status, shareType } = this.state;
+        const shareTypeEmail = (shareType === 'email');
 
         return (
             <form id="dropform">
@@ -86,32 +94,39 @@ class DropForm extends React.Component {
                             <div className="files-body">
                                 <h2>Share via</h2>
                                 <div className="share-types">
-                                    <a className="active">Email</a>
-                                    <a>Link</a>
+                                    <a onClick={(() => this.setShareType('email'))} role="presentation" className={shareTypeEmail ? 'active' : ''}>Email</a>
+                                    <a onClick={(() => this.setShareType('link'))} role="presentation" className={shareTypeEmail ? '' : 'active'}>Link</a>
                                 </div>
-                                <div className="share-type">
-                                    <div className="input">
-                                        <label htmlFor="to-email">
-                                            Email to
-                                            <input name="to-email" spellCheck={false} type="text" />
-                                        </label>
-                                    </div>
-                                    <div className="input">
-                                        <label htmlFor="your-email">
-                                            Your Email
-                                            <input name="your-email" spellCheck={false} type="text" />
-                                        </label>
-                                    </div>
-                                    <div className="input">
-                                        <label htmlFor="message">
-                                            Message
-                                            <textarea name="message" spellCheck={false} />
-                                        </label>
-                                    </div>
-                                </div>
+                                {
+                                    shareTypeEmail ?
+                                        (
+                                            <div className="share-type">
+                                                <div className="input">
+                                                    <input name="to-email" spellCheck={false} required type="text" />
+                                                    <span>Email to</span>
+                                                </div>
+                                                <div className="input">
+                                                    <input name="your-email" spellCheck={false} required type="text" />
+                                                    <span>Your Email</span>
+                                                </div>
+                                                <div className="input">
+                                                    <textarea name="message" required spellCheck={false} />
+                                                    <span>Message</span>
+                                                </div>
+                                            </div>
+                                        ) :
+                                        (
+                                            <div className="share-type">
+                                                <div className="input">
+                                                    <input name="link" spellCheck={false} required type="text" />
+                                                    <span>Your link</span>
+                                                </div>
+                                            </div>
+                                        )
+                                }
                             </div>
                         </div>
-                        <button className="action-section button primary medium" type="submit">{shareType === 'email' ? 'Send Files' : 'Copy Share Link'}</button>
+                        <button className="action-section button primary medium" type="submit">{shareTypeEmail ? 'Send Files' : 'Copy Share Link'}</button>
                     </section>
                 ) : null}
 
