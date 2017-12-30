@@ -16,11 +16,13 @@ class DropForm extends React.Component {
             },
             shareType: 'email',
             files: [{
+                id: 2,
                 name: 'file.styl',
                 size: '4.12 KB',
                 date: moment().format()
             },
             {
+                id: 3,
                 name: 'Dropful_v2.png',
                 size: '6.92 MB',
                 date: moment().format()
@@ -53,7 +55,7 @@ class DropForm extends React.Component {
 
     filesLoading() {
         const fileView = this.state.files.map(file => (
-            <div className="file" key={file.name}>
+            <div className="file" key={file.id}>
                 <div className="info">
                     <p className="name">
                         {file.name}
@@ -63,14 +65,22 @@ class DropForm extends React.Component {
                     </small>
                 </div>
                 <div className="status">
-                    <div className="circle accepted">
-                        <i data-minicon="tick" />
+                    <div className="circle" onClick={(() => this.discardFile(file.id))} role="presentation">
+                        <i className="success" data-minicon="tick" />
+                        <i className="discard" data-minicon="x" />
                     </div>
                 </div>
             </div>
         ));
 
         return fileView;
+    }
+
+    discardFile(id) {
+        const files = [...this.state.files];
+        files.splice(files.findIndex(f => f.id === id), 1);
+
+        this.setState({ files });
     }
 
     isTyping(event) {
@@ -113,15 +123,23 @@ class DropForm extends React.Component {
                     <section className="holder">
                         <div className="action-section files">
                             <div className="files-body">
-                                <h2>Your files</h2>
-                                { this.filesLoading() }
+                                <h4>Your files</h4>
+                                <div className="filelist">
+                                    { this.filesLoading() }
+                                </div>
                                 <a className="load-more"><small>+4 more uploads</small></a>
                             </div>
                             <div className="files-body">
-                                <h2>Share via</h2>
+                                <h4>Share via</h4>
                                 <div className="share-types">
-                                    <a onClick={(() => this.setShareType('email'))} role="presentation" className={shareTypeEmail ? 'active' : ''}>Email</a>
-                                    <a onClick={(() => this.setShareType('link'))} role="presentation" className={shareTypeEmail ? '' : 'active'}>Link</a>
+                                    <a onClick={(() => this.setShareType('email'))} role="presentation" className={shareTypeEmail ? 'active' : ''}>
+                                        <span className="circle" />
+                                        Email
+                                    </a>
+                                    <a onClick={(() => this.setShareType('link'))} role="presentation" className={shareTypeEmail ? '' : 'active'}>
+                                        <span className="circle" />
+                                        Link
+                                    </a>
                                 </div>
                                 {
                                     shareTypeEmail ?
@@ -152,10 +170,7 @@ class DropForm extends React.Component {
                                 }
                             </div>
                         </div>
-                        <div className="button-group">
-                            <a onClick={this.discard} role="presentation" className="button medium discard"><i data-minicon="x" /></a>
-                            <button className="button primary medium submit" type="submit">{shareTypeEmail ? `Send File${files.length > 1 ? 's' : ''}` : 'Copy Share Link'}</button>
-                        </div>
+                        <button className="button primary medium submit" type="submit">{shareTypeEmail ? `Send File${files.length > 1 ? 's' : ''}` : 'Copy Share Link'}</button>
                     </section>
                 ) : null}
 
