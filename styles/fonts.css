@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "Basier Circle";
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/basiercircle-regular.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Basier Circle";
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/basiercircle-medium.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Basier Circle";
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/basiercircle-semibold.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Basier Circle";
+  font-weight: 700;
+  font-display: swap;
+  src: url(/fonts/basiercircle-bold.woff) format("woff");
+}

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /profile
+Disallow: /billing
+
+Host: https://onlook.io
+
+Sitemap: https://onlook.io/sitemap.xml

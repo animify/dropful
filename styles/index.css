@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-gradient {
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .text-shadow {
+    text-shadow: rgba(0, 0, 0, 25%) 0px 1px 2px;
+  }
+}
+
+html {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
+  width: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+@layer base {
+  h1 {
+    @apply text-4xl;
+  }
+
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-2xl;
+  }
+
+  h4 {
+    @apply text-xl;
+  }
+
+  h5 {
+    @apply text-lg;
+  }
+
+  h6 {
+    @apply text-base;
+  }
+}
+
+.policy {
+  @apply text-gray-800;
+}
+
+.policy p,
+.policy ul li,
+.policy ol li {
+  @apply leading-6;
+}
+
+.policy ul li,
+.policy ol li {
+  @apply py-1;
+}
+
+.policy p + ol,
+.policy p + ul {
+  @apply mt-4;
+}
+
+.policy p + p,
+.policy ul + p {
+  @apply mt-4;
+}
+
+.policy ul {
+  @apply list-disc;
+  @apply list-inside;
+}
+
+.policy ol {
+  @apply list-decimal;
+  @apply list-inside;
+}
+
+.policy h1,
+.policy h2,
+.policy h3,
+.policy h4 {
+  @apply font-semibold;
+  @apply mt-6;
+  @apply mb-3;
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
