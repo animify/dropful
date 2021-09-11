@@ -15,7 +15,13 @@ export default async function getImageHash(
       });
       console.log("data", data);
       console.log("imageUrl", imageUrl);
-      res.status(200).json({ base64: data.base64 });
+      res
+        .status(200)
+        .json({
+          base64: data.base64,
+          width: data.img.width,
+          height: data.img.height,
+        });
       break;
     default:
       res.status(400).json({ success: false });

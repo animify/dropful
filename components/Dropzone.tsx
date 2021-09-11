@@ -1,75 +1,64 @@
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import { useTeam } from "../contexts/team";
 import fetcher from "../lib/fetcher";
 import { supabase } from "../lib/initSupabase";
 
 export default function Dropzone() {
-  const onDrop = useCallback(async (acceptedFiles: File[]) => {
-    console.log("acceptedFiles", acceptedFiles);
+  const { team } = useTeam();
 
-    acceptedFiles.forEach((file) => {
-      console.log("file", file);
+  const onDrop = useCallback(
+    async (acceptedFiles: File[]) => {
+      if (!team) return;
+      console.log("acceptedFiles", acceptedFiles);
 
-      const fileReader = new FileReader();
+      acceptedFiles.forEach(async (file) => {
+        console.log("file", file);
 
-      fileReader.onload = () => {
-        // file is loaded
-        const img = new Image();
+        const path = `${team.shortid}/${file.name}`;
 
-        img.onload = async () => {
-          console.log("height", img.height);
-          console.log("width", img.width);
+        await supabase.storage.from("imagedata").upload(path, file, {
+          cacheControl: "3600",
+          upsert: false,
+        });
 
-          const path = `animify/${file.name}`;
+        const { signedURL } = await supabase.storage
+          .from("imagedata")
+          .createSignedUrl(path, 60);
 
-          await supabase.storage.from("imagedata").upload(path, file, {
-            cacheControl: "3600",
-            upsert: false,
-          });
+        const { base64, width, height } = await fetcher(
+          `/api/getImageHash?imageUrl=${signedURL}`
+        );
 
-          const { signedURL } = await supabase.storage
-            .from("imagedata")
-            .createSignedUrl(path, 60);
+        const { data, error } = await supabase
+          .from("images")
+          .insert({
+            name: file.name.split(".")[0],
+            filename: file.name,
+            width,
+            height,
+            base64,
+          })
+          .single();
 
-          const { base64 } = await fetcher(
-            `/api/getImageHash?imageUrl=${signedURL}`
-          );
-
-          console.log("{base64}", { base64 });
-
-          const { data, error } = await supabase
-            .from("images")
-            .insert({
-              name: file.name.split(".")[0],
-              filename: file.name,
-              width: img.width,
-              height: img.height,
-              base64,
-            })
-            .single();
-
-          const { data: newData, error: newError } = await supabase
-            .from("teams")
-            .update({
-              images: [data.id],
-            })
-            .eq("shortid", "animify")
-            .single();
-
-          // console.log("d", d);
-        };
-
-        img.src = fileReader.result as string;
-      };
-
-      fileReader.readAsDataURL(file);
-    });
-  }, []);
+        const { data: newData, error: newError } = await supabase
+          .from("teams")
+          .update({
+            images: [
+              ...new Set([...team.images.map((img) => img.id), data.id]),
+            ],
+          })
+          .eq("shortid", "animify")
+          .single();
+      });
+    },
+    [team]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <div {...getRootProps()}>
+    <div className="flex p-4 border-2 w-full" {...getRootProps()}>
       <input {...getInputProps()} />
       {isDragActive ? (
         <p>Drop the files here ...</p>

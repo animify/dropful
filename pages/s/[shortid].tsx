@@ -16,11 +16,9 @@ export default function TeamPage() {
 
   return (
     <TeamProvider shortid={shortid}>
-      <div className="w-full h-full bg-gray-300">
-        {shortid}
-        <Dropzone />
-        <ImageList />
-      </div>
+      {shortid}
+      <Dropzone />
+      <ImageList />
     </TeamProvider>
   );
 }

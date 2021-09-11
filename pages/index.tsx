@@ -6,25 +6,15 @@ import ImageList from "../components/ImageList";
 export default function IndexPage() {
   const user = supabase.auth.user();
 
-  console.log("user", user);
-
   return (
-    <div className="w-full h-full bg-gray-300">
+    <>
       {!user ? (
-        <div className="w-full h-full flex flex-col justify-center items-center p-4">
-          {/* <Auth
-            supabaseClient={supabase}
-            providers={["google", "github"]}
-            socialLayout="horizontal"
-            socialButtonSize="xlarge"
-          /> */}
-        </div>
+        <div className="w-full h-full flex flex-col justify-center items-center p-4"></div>
       ) : (
         <div
           className="w-full h-full flex flex-col justify-center items-center p-4"
           style={{ minWidth: 250, maxWidth: 600, margin: "auto" }}
         >
-          WEE
           <Dropzone />
           <ImageList />
           <button
@@ -38,6 +28,6 @@ export default function IndexPage() {
           </button>
         </div>
       )}
-    </div>
+    </>
   );
 }

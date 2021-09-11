@@ -1,5 +1,6 @@
-import { supabase } from "../../../lib/initSupabase";
+import dayjs from "dayjs";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { supabase } from "../../../lib/initSupabase";
 
 export default async function getTeam(
   req: NextApiRequest,
@@ -23,12 +24,15 @@ export default async function getTeam(
         .eq("shortid", shortId)
         .single();
 
-      const images = await supabase
-        .from("images")
-        .select("id, width, height, base64, filename")
-        .in("id", data.data?.images);
-
-      data.data.images = images.data;
+      if (data.data) {
+        const images = await supabase
+          .from("images")
+          .select("id, width, height, base64, filename, created_at")
+          .in("id", data.data.images);
+        data.data.images = images.data.sort((a, b) =>
+          dayjs(b.created_at).isAfter(dayjs(a.created_at)) ? 1 : -1
+        );
+      }
 
       res.status(200).json(data);
       break;
