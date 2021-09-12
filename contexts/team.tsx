@@ -17,6 +17,7 @@ interface Team {
     height: number;
     name: string;
     filename: string;
+    created_at: string;
     base64: string;
   }[];
 }

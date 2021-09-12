@@ -1,3 +1,5 @@
+import classNames from "classnames";
+import { AnimatePresence, motion } from "framer-motion";
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useTeam } from "../contexts/team";
@@ -58,13 +60,46 @@ export default function Dropzone() {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <div className="flex p-4 border-2 w-full" {...getRootProps()}>
-      <input {...getInputProps()} />
-      {isDragActive ? (
-        <p>Drop the files here ...</p>
-      ) : (
-        <p>Drag 'n' drop some files here, or click to select files</p>
+    <div
+      className={classNames(
+        "fixed top-0 left-0 w-full h-full p-12 z-50 pointer-events-none"
       )}
+      {...getRootProps()}
+    >
+      <AnimatePresence>
+        {isDragActive && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="relative flex items-center justify-center w-full h-full"
+          >
+            <div
+              className="fixed top-0 left-0 grid grid-rows-3 grid-cols-3 w-full h-full"
+              style={{ filter: `blur(200px)` }}
+            >
+              <span className="w-full h-full bg-blue-500"></span>
+              <span className="w-full h-full bg-green-500"></span>
+              <span className="w-full h-full bg-purple-500"></span>
+              <span className="w-full h-full bg-yellow-500"></span>
+              <span className="w-full h-full bg-red-500"></span>
+              <span className="w-full h-full bg-indigo-500"></span>
+              <span className="w-full h-full bg-red-500"></span>
+              <span className="w-full h-full bg-green-500"></span>
+              <span className="w-full h-full bg-yellow-500"></span>
+            </div>
+
+            <div className="flex items-center justify-center w-full h-full bg-white rounded-3xl relative z-40 shadow-2xl">
+              <input {...getInputProps()} />
+              <h3 className="font-medium tracking-tight">
+                {isDragActive
+                  ? "Go on, drop them!"
+                  : "Drag in some images, or click here to select some"}
+              </h3>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

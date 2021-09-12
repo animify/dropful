@@ -1,11 +1,10 @@
 import React, { useMemo, useState } from "react";
-import Image from "next/image";
 import { supabase } from "../lib/initSupabase";
 import { useCallback } from "react";
 import { useEffect } from "react";
 import { useTeam } from "../contexts/team";
 import { AnimatePresence, motion } from "framer-motion";
-import ImageItem from "./ImageItem";
+import Image from "./Image";
 
 function getLayoutGroups(
   images: {
@@ -70,32 +69,30 @@ export default function ImageList() {
     getPhotoUrls().then(setImageData);
   }, [team]);
 
+  console.log("team?.images", team?.images);
   return (
-    <div className="flex flex-col w-full max-w-5xl mx-auto">
-      <motion.div className="flex gap-3">
-        {team &&
-          getLayoutGroups(team.images).map((group, index) => (
-            <div key={index} className="flex flex-col gap-3 w-1/3">
-              <AnimatePresence>
-                {group.map((data) => (
-                  <motion.div
-                    layout
-                    key={data.id}
-                    className="rounded-lg overflow-hidden"
-                  >
-                    <ImageItem
-                      key={data.id}
-                      src={imageData[data.id.toString()]}
-                      loader={data.base64}
-                      alt={data.name}
-                      height={data.height}
-                      width={data.width}
-                    />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </div>
+    <div className="flex flex-col w-full mx-auto px-4">
+      <motion.div className="flex gap-1.5 flex-wrap">
+        <AnimatePresence>
+          {team?.images.map((data) => (
+            <motion.div
+              layout
+              key={data.id}
+              className="flex rounded overflow-hidden"
+            >
+              <Image
+                key={data.id}
+                name={data.name || data.filename}
+                createdAt={data.created_at}
+                src={imageData[data.id.toString()]}
+                loader={data.base64}
+                alt={data.name}
+                height={data.height}
+                width={data.width}
+              />
+            </motion.div>
           ))}
+        </AnimatePresence>
       </motion.div>
     </div>
   );

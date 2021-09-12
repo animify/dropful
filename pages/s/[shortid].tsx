@@ -4,6 +4,7 @@ import type { ParsedUrlQuery } from "querystring";
 import { TeamProvider } from "../../contexts/team";
 import ImageList from "../../components/ImageList";
 import Dropzone from "../../components/Dropzone";
+import Nav from "../../components/Nav";
 
 interface Params extends ParsedUrlQuery {
   shortid: string;
@@ -16,7 +17,7 @@ export default function TeamPage() {
 
   return (
     <TeamProvider shortid={shortid}>
-      {shortid}
+      <Nav />
       <Dropzone />
       <ImageList />
     </TeamProvider>
