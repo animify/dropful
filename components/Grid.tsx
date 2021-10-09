@@ -43,6 +43,7 @@ export default function Grid() {
         columnCount={3}
         columnGutter={8}
         items={images}
+        itemKey={({ id }) => id}
         render={TeamImage}
       />
     </div>

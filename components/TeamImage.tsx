@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useCallback } from "react";
 import classNames from "classnames";
 import dayjs from "dayjs";
@@ -7,7 +8,7 @@ import type { RenderComponentProps } from "masonic";
 interface Props
   extends React.PropsWithChildren<RenderComponentProps<ITeamImageWithSrc>> {}
 
-export default function TeamImage({ data, width }: Props) {
+export default React.memo(function TeamImage({ data, width }: Props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const onLoad = useCallback(() => {
     setIsLoaded(true);
@@ -58,4 +59,4 @@ export default function TeamImage({ data, width }: Props) {
       </div>
     </div>
   );
-}
+});
