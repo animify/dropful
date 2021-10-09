@@ -61,9 +61,7 @@ export default function Dropzone() {
 
   return (
     <div
-      className={classNames(
-        "fixed top-0 left-0 w-full h-full p-12 z-50 pointer-events-none"
-      )}
+      className={classNames("fixed top-0 left-0 w-full h-full p-12 z-50")}
       {...getRootProps()}
     >
       <AnimatePresence>
