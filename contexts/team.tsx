@@ -2,27 +2,15 @@ import React, { useContext, useEffect } from "react";
 import useSwr, { mutate } from "swr";
 import fetcher from "../lib/fetcher";
 import { supabase } from "../lib/initSupabase";
+import { ITeam } from "../types/team";
 
 interface TeamProviderProps {
   children: React.ReactNode;
   shortid: string;
 }
 
-interface Team {
-  shortid: string;
-  name: string;
-  images: {
-    id: number;
-    width: number;
-    height: number;
-    name: string;
-    filename: string;
-    created_at: string;
-    base64: string;
-  }[];
-}
 export interface TeamContextProps {
-  team: Team | undefined;
+  team: ITeam | undefined;
   loading: boolean;
 }
 

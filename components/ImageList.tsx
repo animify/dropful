@@ -6,42 +6,6 @@ import { useTeam } from "../contexts/team";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "./Image";
 
-function getLayoutGroups(
-  images: {
-    id: number;
-    width: number;
-    height: number;
-    name: string;
-    filename: string;
-    base64: string;
-  }[]
-) {
-  const columnsTotal = 3;
-  const groups = Array(columnsTotal)
-    .fill(null)
-    .map((_) => []);
-  console.log("groups", groups);
-
-  let index = 0;
-  let loopedTotal = 0;
-
-  for (const image of images) {
-    if (index >= columnsTotal) {
-      index = 0;
-    }
-
-    groups[index].push(image);
-    console.log("index", index);
-    console.log("groups", groups);
-
-    ++index;
-    ++loopedTotal;
-  }
-
-  console.log("loopedTotal", loopedTotal);
-  return groups;
-}
-
 export default function ImageList() {
   const { team } = useTeam();
   const [imageData, setImageData] = useState<Record<string, string>>({});

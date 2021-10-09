@@ -2,6 +2,7 @@ import React from "react";
 import { supabase } from "../lib/initSupabase";
 import Dropzone from "../components/Dropzone";
 import ImageList from "../components/ImageList";
+import Grid from "../components/Grid";
 
 export default function IndexPage() {
   const user = supabase.auth.user();
@@ -16,7 +17,7 @@ export default function IndexPage() {
           style={{ minWidth: 250, maxWidth: 600, margin: "auto" }}
         >
           <Dropzone />
-          <ImageList />
+          <Grid />
           <button
             className="btn-black w-full mt-12"
             onClick={async () => {
