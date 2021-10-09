@@ -1,8 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import type { ParsedUrlQuery } from "querystring";
 import { TeamProvider } from "../../contexts/team";
-import ImageList from "../../components/ImageList";
 import Dropzone from "../../components/Dropzone";
 import Nav from "../../components/Nav";
 import Grid from "../../components/Grid";

@@ -50,7 +50,7 @@ export default function Dropzone() {
               ...new Set([...team.images.map((img) => img.id), data.id]),
             ],
           })
-          .eq("shortid", "animify")
+          .eq("shortid", team.shortid)
           .single();
       });
     },
