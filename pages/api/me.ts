@@ -6,7 +6,6 @@ export default async function me(req: NextApiRequest, res: NextApiResponse) {
   const { method, headers } = req;
   const token = headers.token;
 
-  console.log("token", token);
   switch (method) {
     case "GET":
       const { data: user, error } = await supabase.auth.api.getUserByCookie(

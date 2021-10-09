@@ -5,6 +5,7 @@ import ImageList from "../components/ImageList";
 import Grid from "../components/Grid";
 import { Auth, Space, Typography } from "@supabase/ui";
 import useSWR from "swr";
+import { useSupabase } from "use-supabase";
 
 type ViewType =
   | "sign_in"

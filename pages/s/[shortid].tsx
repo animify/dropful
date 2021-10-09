@@ -11,8 +11,8 @@ interface Params extends ParsedUrlQuery {
 }
 
 export default function TeamPage() {
-  const router = useRouter();
-  const params = router.query as Params;
+  const { query } = useRouter();
+  const params = query as Params;
   const shortid = params.shortid;
 
   return (
