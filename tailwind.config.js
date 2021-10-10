@@ -12,7 +12,7 @@ module.exports = {
       xl: "1440px",
     },
     fontFamily: {
-      sans: ["Graphik", "sans-serif"],
+      sans: ["Basier Circle", "sans-serif"],
       serif: ["Merriweather", "serif"],
     },
     container: {
@@ -24,7 +24,7 @@ module.exports = {
         jumbo: "3.25rem",
       },
       colors: {
-        gray: colors.coolGray,
+        gray: colors.trueGray,
         cyan: colors.cyan,
       },
       zIndex: {

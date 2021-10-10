@@ -11,7 +11,7 @@ export default function Dropzone() {
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
-      if (!team) return;
+      if (!team?.shortid) return;
       console.log("acceptedFiles", acceptedFiles);
 
       acceptedFiles.forEach(async (file) => {
@@ -54,14 +54,16 @@ export default function Dropzone() {
           .single();
       });
     },
-    [team]
+    [team?.shortid, team?.images]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
     <div
-      className={classNames("fixed top-0 left-0 w-full h-full p-12 z-50")}
+      className={classNames(
+        "fixed top-0 left-0 w-full h-full p-12 z-50 pointer-events-none"
+      )}
       {...getRootProps()}
     >
       <AnimatePresence>

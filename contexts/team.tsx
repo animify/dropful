@@ -21,11 +21,11 @@ export const TeamContext = React.createContext<TeamContextProps>({
 
 export const TeamProvider = ({ children, shortid }: TeamProviderProps) => {
   const { data: team } = useSwr(`/api/teams/${shortid}`, fetcher);
-
+  console.log("team", team);
   useEffect(() => {
     const mySubscription = supabase
-      .from("*")
-      .on("*", (payload) => {
+      .from("teams")
+      .on("UPDATE", (payload) => {
         console.log("Change received!", payload);
         mutate(`/api/teams/${shortid}`, (data) => data, true);
       })

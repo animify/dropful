@@ -28,6 +28,7 @@ export default React.memo(function TeamImage({ data, width }: Props) {
       </div>
       <div className="flex relative rounded overflow-hidden">
         <img
+          key={`placeholder-${data.id}`}
           src={data.base64}
           alt={data.filename}
           style={{
@@ -38,13 +39,11 @@ export default React.memo(function TeamImage({ data, width }: Props) {
         />
         {data.src && (
           <img
-            className={classNames(
-              "transition-all duration-200 ease-in absolute z-0 left-0 top-0",
-              {
-                "opacity-0 scale-110": !isLoaded,
-                "opacity-100 scale-100 group-hover:scale-105": isLoaded,
-              }
-            )}
+            key={`image-${data.id}`}
+            className={classNames("ease-in absolute z-0 left-0 top-0", {
+              "opacity-0 scale-110 transition-all duration-200": !isLoaded,
+              "opacity-100 scale-100 group-hover:scale-105": isLoaded,
+            })}
             style={{
               willChange: "opacity, transform",
               objectFit: "cover",

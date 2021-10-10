@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { Card, Typography, Space } from "@supabase/ui";
 import { supabase } from "../lib/initSupabase";
 
 export default function Profile() {
