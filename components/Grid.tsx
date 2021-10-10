@@ -4,7 +4,12 @@ import { useTeam } from "../contexts/team";
 import { supabase } from "../lib/initSupabase";
 import TeamImage from "./TeamImage";
 import { atom, useAtom } from "jotai";
-import { MinusIcon, PlusIcon } from "@heroicons/react/solid";
+import {
+  MinusIcon,
+  PlusIcon,
+  SortAscendingIcon,
+  SortDescendingIcon,
+} from "@heroicons/react/solid";
 
 const countAtom = atom(3);
 
@@ -44,10 +49,33 @@ export default function Grid() {
 
   return (
     <>
+      <div className="flex items-center justify-between border-b px-3 border-black/[8%] bg-white mb-5">
+        <div className="flex space-x-0.5 relative">
+          <button className="relative text-sm flex font-medium py-3 px-3 text-gray-800">
+            All
+            <div className="w-full h-0.5 absolute -bottom-px left-0 bg-gray-800"></div>
+          </button>
+          <button className="relative text-sm flex font-medium py-3 px-3 text-gray-500">
+            Screenshots
+          </button>
+          <button className="relative text-sm flex font-medium py-3 px-3 text-gray-500">
+            Mobile
+          </button>
+        </div>
+
+        <div className="flex space-x-2">
+          <div className="flex rounded-full px-2.5 py-1.5 bg-gray-200">
+            <SortAscendingIcon className="text-gray-800 w-5 h-5" />
+          </div>
+          {/* <div className="flex rounded-lg">
+            <SortDescendingIcon className="text-gray-800 w-5 h-5" />
+          </div> */}
+        </div>
+      </div>
       <div className="flex flex-col w-full mx-auto px-5">
         <Masonry
           columnCount={count}
-          columnGutter={8}
+          columnGutter={20}
           items={images}
           itemKey={getItemKey}
           render={TeamImage}

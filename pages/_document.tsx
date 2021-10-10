@@ -49,7 +49,7 @@ export default class Document extends NextDocument {
           <meta property="og:description" content="Dropful." />
           <meta name="twitter:image:alt" content="Dropful." />
         </Head>
-        <body className="bg-white overflow-hidden">
+        <body className="bg-gray-100 overflow-hidden">
           <main className="overflow-y-auto max-h-screen w-full">
             <Main />
           </main>
