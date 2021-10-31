@@ -1,12 +1,7 @@
-import "../styles/index.css";
-import "../styles/fonts.css";
-import { SupabaseContextProvider } from "use-supabase";
-import { supabase } from "../lib/initSupabase";
+import "styles/index.css";
+import "styles/fonts.css";
+import type { AppProps } from "next/app";
 
-export default function MyApp({ Component, pageProps }) {
-  return (
-    <SupabaseContextProvider client={supabase}>
-      <Component {...pageProps} />
-    </SupabaseContextProvider>
-  );
+export default function App({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />;
 }

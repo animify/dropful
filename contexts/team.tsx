@@ -23,15 +23,18 @@ export const TeamProvider = ({ children, shortid }: TeamProviderProps) => {
   const { data: team } = useSwr(`/api/teams/${shortid}`, fetcher);
   console.log("team", team);
   useEffect(() => {
+    console.log("subscription");
     const mySubscription = supabase
-      .from("teams")
-      .on("UPDATE", (payload) => {
+      .from("*")
+      .on("*", (payload) => {
         console.log("Change received!", payload);
         mutate(`/api/teams/${shortid}`, (data) => data, true);
       })
       .subscribe();
 
     return () => {
+      console.log("removed subscription");
+
       supabase.removeSubscription(mySubscription);
     };
   }, [shortid]);

@@ -1,8 +1,7 @@
 module.exports = {
-  webpack5: true,
-  eslint: {
-    dirs: ["pages", "components"],
-    ignoreDuringBuilds: true,
+  swcMinify: true,
+  experimental: {
+    reactRoot: true,
   },
   images: {
     domains: ["ajzopbdtvubbespmrsdl.supabase.co"],

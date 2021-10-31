@@ -33,9 +33,11 @@ export default function Image({
   return (
     <div className="flex group relative">
       <div className="absolute h-full w-full top-0 left-0 px-3.5 py-3 z-30 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-        <div className="flex flex-col text-white">
-          <small className="font-medium">{name}</small>
-          <small>{dayjs(createdAt).format("MMM D, HH:mm")}</small>
+        <div className="flex flex-col">
+          <small className="font-medium text-white">{name}</small>
+          <small className="opacity-40">
+            {dayjs(createdAt).format("MMM D, HH:mm")}
+          </small>
         </div>
       </div>
       <div className="flex relative overflow-hidden">
